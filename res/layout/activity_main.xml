@@ -1,69 +1,64 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView1"
-    android:background="@drawable/background"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@drawable/background" >
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/brainstorm" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
-        android:text="Brainstorm"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <EditText
+            android:id="@+id/mainUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Username" />
 
-    <EditText
-        android:id="@+id/mainUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:ems="10"
-        android:hint="Username" />
+        <EditText
+            android:id="@+id/mainPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/mainPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mainUsername"
-        android:layout_below="@+id/mainUsername"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-        <requestFocus />
-    </EditText>
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="65dp"
+                android:onClick="myRegisterHandler"
+                android:text="Register" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/mainPassword"
-        android:layout_below="@+id/mainPassword"
-        android:onClick="myLoginHandler"
-        android:text="Log In" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:onClick="myLoginHandler"
+                android:text="Log In" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignLeft="@+id/mainPassword"
-        android:onClick="myRegisterHandler"
-        android:text="Register" />
+        </LinearLayout>
+        
+
+    </LinearLayout>
 
 
-
-</RelativeLayout>
 </ScrollView>

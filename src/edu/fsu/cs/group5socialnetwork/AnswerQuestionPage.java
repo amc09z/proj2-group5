@@ -52,7 +52,7 @@ public class AnswerQuestionPage extends Activity {
 	    
 	    populate();
 	    
-	    Toast.makeText(this, question, Toast.LENGTH_SHORT).show();
+	    //Toast.makeText(this, question, Toast.LENGTH_SHORT).show();
 	}
 	
 	

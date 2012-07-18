@@ -77,7 +77,7 @@ public class MainQuestionsActivity extends Activity {
 		SharedPreferences userDetails = MainQuestionsActivity.this.getSharedPreferences("userdetails", MODE_PRIVATE);
 		username = userDetails.getString("username", "");		
 
-		Toast.makeText(this, subcat, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, subcat, Toast.LENGTH_SHORT).show();
 		
 	    listView.setOnItemClickListener(new OnItemClickListener(){
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

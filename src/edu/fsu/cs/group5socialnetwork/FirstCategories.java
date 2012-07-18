@@ -50,6 +50,10 @@ public class FirstCategories extends Activity {
 			       			//will be displayed with Lit stuff and allow users to ask questions
 			       			startActivity(myIntent4);
 			                break;
+			       case 5:  Intent myIntent5 = new Intent(getApplicationContext(), MainQuestionsActivity.class);
+			       		    myIntent5.putExtra("subcat", "Other");
+			       		    startActivity(myIntent5);
+			       		    break;
 			    }
 			    
 			}});
