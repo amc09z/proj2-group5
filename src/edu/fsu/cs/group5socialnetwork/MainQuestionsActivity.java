@@ -36,7 +36,7 @@ public class MainQuestionsActivity extends Activity {
 	final String TABLE_NAME = "questions";
 	EditText theQuestion;
 	Button questionButton;
-	String username, subcat;
+	String username, subcat, Q;
 	ListView listView; 
 
 	@Override public void onCreate(Bundle savedInstanceState) {
@@ -91,11 +91,26 @@ public class MainQuestionsActivity extends Activity {
 		
 		questionButton.setOnClickListener(new OnClickListener() {
 			@Override public void onClick(View v) {
+				boolean testing = true;
+				
+				if(theQuestion.getText().toString().contains("'"))
+				{
+					Q = theQuestion.getText().toString().replace("'", "");
+					testing = false;
+				}
+				else if(theQuestion.getText().toString().contains("\\"))
+				{
+					Q = theQuestion.getText().toString().replace("\\", "");
+					testing = false;
+				}
+				
+				
 				if (theQuestion.getText().toString() != null) {
+					if(testing != false)
+					{
 					Toast.makeText(MainQuestionsActivity.this, "Question Asked", Toast.LENGTH_SHORT).show();
-
-					String Q = theQuestion.getText().toString();
-
+					Q = theQuestion.getText().toString();
+					}
 					InsertRowData insertRowData = new InsertRowData(TABLE_NAME);
 					insertRowData.setValue("question", Q);
 					insertRowData.setValue("username", username);

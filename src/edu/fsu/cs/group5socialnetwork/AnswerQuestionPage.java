@@ -55,8 +55,25 @@ public class AnswerQuestionPage extends Activity {
 	
 	
 	public void answerQuestionHandler(View v){
+		boolean testing = true;
+		
+		if(answerbox.getText().toString().contains("'"))
+		{
+			answer = answerbox.getText().toString().replace("'", "");
+			testing = false;
+		}
+		else if(answerbox.getText().toString().contains("\\"))
+		{
+			answer = answerbox.getText().toString().replace("\\", "");
+			testing = false;
+		}
+		
+		
 		if (!answerbox.getText().toString().equals("")) {
+			if(testing != false)
+			{
 			answer = answerbox.getText().toString();
+			}
 
 			InsertRowData insertRowData = new InsertRowData("answers");
 			insertRowData.setValue("question", question);
@@ -74,6 +91,7 @@ public class AnswerQuestionPage extends Activity {
 			sendSMS();
 		}
 		
+
  
 		answerbox.setText("");
 	}
