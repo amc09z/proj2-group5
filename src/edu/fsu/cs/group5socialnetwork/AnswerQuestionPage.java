@@ -2,13 +2,13 @@ package edu.fsu.cs.group5socialnetwork;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Vector;
-
 import com.mobdb.android.GetRowData;
 import com.mobdb.android.InsertRowData;
 import com.mobdb.android.MobDB;
 import com.mobdb.android.MobDBResponseListener;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,8 +19,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AnswerQuestionPage extends Activity {
 	final String APP_KEY = "66TP6D-1Ss-00L7SKWoWLlKpaduIiUiUMIR-BLUuIiZxZpPSCIAeua";
@@ -51,15 +51,11 @@ public class AnswerQuestionPage extends Activity {
 	    topQuestion.setText(question);
 	    
 	    populate();
-	    
-	    //Toast.makeText(this, question, Toast.LENGTH_SHORT).show();
 	}
 	
 	
 	public void answerQuestionHandler(View v){
 		if (answerbox.getText().toString() != null) {
-			Toast.makeText(AnswerQuestionPage.this, "Answer submitted", Toast.LENGTH_SHORT).show();
-
 			answer = answerbox.getText().toString();
 
 			InsertRowData insertRowData = new InsertRowData("answers");
@@ -84,16 +80,39 @@ public class AnswerQuestionPage extends Activity {
 		GetRowData data = new GetRowData("answers");
 		data.getField("question");
 		data.getField("answer");
+		data.getField("username");
 
 		MobDB.getInstance().execute(APP_KEY, data, null, false, new MobDBResponseListener() {
 			public void mobDBSuccessResponse() { }
 			public void mobDBResponse(Vector<HashMap<String, Object[]>> result) {
-				ArrayList<String> toAdd = new ArrayList<String>(); 
-				int count = 0; 
+				ArrayList<String> questiony = new ArrayList<String>();
+				ArrayList<String> user = new ArrayList<String>();
+				List <Map<String,String>> datay = new ArrayList<Map<String,String>>();
+				HashMap<String, String> map;
+				int count = 0;
 				// result.get(0) = first row
 				// .get("question") = question attribute
 				// [0] since it is a 2D array always have to have [0]
-				if (result.size() > 0) { 
+				if (result.size() > 0) {  
+					do {
+						if (result.get(count).get("question")[0].toString().equals(question)) {
+							map = new HashMap<String, String>();
+							map.put("ans", result.get(count).get("answer")[0].toString());
+							map.put("name", result.get(count).get("username")[0].toString());
+							datay.add(map);
+						}
+						count++;
+					} while (count < result.size());
+					
+					SimpleAdapter adapter = new SimpleAdapter(
+							AnswerQuestionPage.this, datay, 
+							android.R.layout.simple_list_item_2, 
+							new String[]{"ans","name"}, 
+							new int[] {android.R.id.text1, android.R.id.text2});
+					listView.setAdapter(adapter);
+			    }
+					
+					/*
 					do {
 						if (result.get(count).get("question")[0].toString().equals(question)) 
 							toAdd.add(result.get(count).get("answer")[0].toString());
@@ -102,7 +121,7 @@ public class AnswerQuestionPage extends Activity {
 					
 					ArrayAdapter<String> adapter = new ArrayAdapter<String>(AnswerQuestionPage.this, android.R.layout.simple_list_item_1, android.R.id.text1, toAdd);
 					listView.setAdapter(adapter);
-				}
+				}*/
 			}
 			public void mobDBResponse(String jsonObj) {}
 			public void mobDBFileResponse(String fileName, byte[] fileData) {}
@@ -149,7 +168,6 @@ public class AnswerQuestionPage extends Activity {
 					SmsManager sm = SmsManager.getDefault();
 					// HERE IS WHERE THE DESTINATION OF THE TEXT SHOULD GO
 					sm.sendTextMessage(number, null, answer, null, null);
-					Toast.makeText(AnswerQuestionPage.this, "TEXT MESSAGE SENT", Toast.LENGTH_LONG).show();
 				}
 			}
 			public void mobDBResponse(String jsonObj) {}

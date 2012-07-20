@@ -5,15 +5,11 @@
     android:background="@drawable/background"
     android:orientation="vertical" >
 
-    <LinearLayout
+   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -27,20 +23,11 @@
                     android:text="Large Text"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <ListView
-                    android:id="@+id/listView1"
-                    android:layout_width="match_parent"
-                    android:layout_height="350dp" >
-                </ListView>
-
                 <EditText
                     android:id="@+id/editText1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10" >
-
-                    <requestFocus />
-                </EditText>
+                    android:ems="10" />
 
                 <Button
                     android:id="@+id/button1"
@@ -48,9 +35,16 @@
                     android:layout_height="wrap_content"
                     android:onClick="answerQuestionHandler"
                     android:text="Answer Question" />
+
+                <ListView
+                    android:id="@+id/listView1"
+                    android:layout_width="match_parent"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:layout_height="fill_parent" >
+                </ListView>
             </LinearLayout>
 
-        </ScrollView>
+ 
 
     </LinearLayout>
 

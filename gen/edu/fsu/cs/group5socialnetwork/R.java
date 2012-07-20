@@ -34,12 +34,12 @@ public final class R {
         public static final int button1=0x7f090004;
         public static final int button2=0x7f090005;
         public static final int confirmPassword=0x7f090017;
-        public static final int editText1=0x7f090008;
+        public static final int editText1=0x7f090007;
         public static final int emailAddress=0x7f09001d;
         public static final int firstName=0x7f09000b;
         public static final int imageView1=0x7f090001;
         public static final int lastName=0x7f09000e;
-        public static final int listView1=0x7f090007;
+        public static final int listView1=0x7f090008;
         public static final int mainPassword=0x7f090003;
         public static final int mainUsername=0x7f090002;
         public static final int menu_settings=0x7f09001e;
