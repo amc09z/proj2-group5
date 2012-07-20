@@ -43,7 +43,6 @@ public class MainActivity extends Activity {
 		//Logs the person in if they have a valid username, if not then
 		//they are asked to register, we can test this with a query to the database
 		//we set up with the usernames and passwords.
-		Boolean booly = true; 
 		username = mUserName.getText().toString();
 		password = mPassword.getText().toString();
 		invalid(mUserName);
