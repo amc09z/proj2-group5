@@ -55,7 +55,7 @@ public class AnswerQuestionPage extends Activity {
 	
 	
 	public void answerQuestionHandler(View v){
-		if (answerbox.getText().toString() != null) {
+		if (!answerbox.getText().toString().equals("")) {
 			answer = answerbox.getText().toString();
 
 			InsertRowData insertRowData = new InsertRowData("answers");
@@ -69,10 +69,12 @@ public class AnswerQuestionPage extends Activity {
 				public void mobDBFileResponse(String fileName, byte[] fileData) {}
 				public void mobDBErrorResponse(Integer errValue, String errMsg) {}
 			});
+			
+			populate();
+			sendSMS();
 		}
 		
-		populate();
-		sendSMS(); 
+ 
 		answerbox.setText("");
 	}
 	
@@ -85,8 +87,7 @@ public class AnswerQuestionPage extends Activity {
 		MobDB.getInstance().execute(APP_KEY, data, null, false, new MobDBResponseListener() {
 			public void mobDBSuccessResponse() { }
 			public void mobDBResponse(Vector<HashMap<String, Object[]>> result) {
-				ArrayList<String> questiony = new ArrayList<String>();
-				ArrayList<String> user = new ArrayList<String>();
+
 				List <Map<String,String>> datay = new ArrayList<Map<String,String>>();
 				HashMap<String, String> map;
 				int count = 0;
@@ -111,17 +112,7 @@ public class AnswerQuestionPage extends Activity {
 							new int[] {android.R.id.text1, android.R.id.text2});
 					listView.setAdapter(adapter);
 			    }
-					
-					/*
-					do {
-						if (result.get(count).get("question")[0].toString().equals(question)) 
-							toAdd.add(result.get(count).get("answer")[0].toString());
-						count++;
-					} while (count < result.size());
-					
-					ArrayAdapter<String> adapter = new ArrayAdapter<String>(AnswerQuestionPage.this, android.R.layout.simple_list_item_1, android.R.id.text1, toAdd);
-					listView.setAdapter(adapter);
-				}*/
+				
 			}
 			public void mobDBResponse(String jsonObj) {}
 			public void mobDBFileResponse(String fileName, byte[] fileData) {}
